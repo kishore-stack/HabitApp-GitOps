@@ -2,7 +2,7 @@ replicaCount: 3
 
 image:
   repository: srkishore/habit-tracker
-  tag: "46f711d3d53a"
+  tag: "95378294e7f5"
   pullPolicy: Always
 
 service:
