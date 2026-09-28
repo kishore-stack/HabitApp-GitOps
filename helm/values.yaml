@@ -1,0 +1,41 @@
+replicaCount: 2
+
+image:
+  repository: srkishore/habit-tracker
+  tag: "46f711d3d53a"
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 8080
+  targetPort: 8080
+
+containerPort: 8080
+
+probes:
+  readiness:
+    path: /actuator/health/readiness
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    timeoutSeconds: 2
+    failureThreshold: 3
+
+  liveness:
+    path: /actuator/health/liveness
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 3
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "256Mi"
+
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+rollingUpdate:
+  maxUnavailable: 0
+  maxSurge: 1
